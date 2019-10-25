@@ -10,8 +10,11 @@ from keras.models import load_model
 from keras import backend as K
 
 showpred = 0
-model_path = './models/model.h5'
-model_weights_path = './models/weights.h5'
+try:
+	model_path = './models/model.h5'
+	model_weights_path = './models/weights.h5'
+except: 
+	print("Need to train model")
 test_path = 'Data/Test'
 
 #Load the pre-trained models
@@ -22,7 +25,7 @@ st.sidebar.title("About")
 st.sidebar.info(
     "This is a demo application written to help you understand Streamlit. The application identifies the animal in the picture. It was built using a Convolution Neural Network (CNN).")
 
-onlyfiles = [f for f in listdir("Path to your images") if isfile(join("Path to your images", f))]
+onlyfiles = [f for f in listdir("Data/Test") if isfile(join("Data/Test", f))]
 
 st.sidebar.title("Train Neural Network")
 if st.sidebar.button('Train CNN'):
@@ -32,7 +35,7 @@ st.sidebar.title("Predict New Images")
 imageselect = st.sidebar.selectbox("Pick an image.", onlyfiles)
 if st.sidebar.button('Predict Animal'):
     showpred = 1
-    prediction = Testing.predict((model),"Path to your image" + imageselect)
+    prediction = Testing.predict((model),"Data/Test/" + imageselect)
 
 
 st.title('Animal Identification')
@@ -40,7 +43,7 @@ st.write("Pick an image from the left. You'll be able to view the image.")
 st.write("When you're ready, submit a prediction on the left.")
 
 st.write("")
-image = Image.open("Path to your image" + imageselect)
+image = Image.open("Data/Test/" + imageselect)
 st.image(image, caption="Let's predict the animal!", use_column_width=True)
 
 if showpred == 1:
