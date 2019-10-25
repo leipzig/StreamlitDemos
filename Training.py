@@ -23,8 +23,8 @@ def train():
     else:
       epochs = 100
 
-    train_data_path = 'Data/Train'
-    validation_data_path = 'Data/Test'
+    train_data_path = 'Data/Train/'
+    validation_data_path = 'Data/Test/'
 
     """
     Parameters
