@@ -13,8 +13,11 @@ Recommend using conda or virtualenv to sandbox your work
 ### Manual Install 
 Recommend using [Anaconda](https://www.anaconda.com/distribution/). Anaconda does not come with TensorFlow or Keras so you will need to install those seperately. 
 ```
-pip install tensorflow keras
+pip install pandas numpy streamlit tensorflow keras
 ```
-For additional information on installing [TensorFlow](https://www.tensorflow.org/install), [Keras](https://keras.io/#installation)
+For additional information on installing TF & Keras: [TensorFlow](https://www.tensorflow.org/install), [Keras](https://keras.io/#installation)
 
-For additional information on Streamlit: [Streamlit](https://streamlit.io/docs/)
+For additional information on Streamlit: [Docs](https://streamlit.io/docs/)
+
+### Training Models
+You can either train your own model inside the Streamlit app or from the command line using training.py. Otherwise, an existing model.h5 and weights.h5 have been included for you. 
