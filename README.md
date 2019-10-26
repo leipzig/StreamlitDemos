@@ -2,6 +2,8 @@
 
 Streamlit demo for classifying animals. You can use Streamlit to create interactive Data Science pages, deployable to the web through all major deployment surfaces. 
 
+![Current State](https://user-images.githubusercontent.com/33185528/67614707-9e50f300-f78f-11e9-9811-c817474ea571.png)
+
 ## Getting Started
 
 Using a python3 (preferably 3.7) environment, run the following to install all the libraries used in this repository:
