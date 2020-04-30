@@ -20,5 +20,5 @@ def predict(model1, file):
     return answer
 
 
-if __name__ == "__predict__":
+if __name__ == "__main__":
     predict()

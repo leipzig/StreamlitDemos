@@ -7,8 +7,12 @@ from keras.layers import Dropout, Flatten, Dense, Activation
 from keras.layers.convolutional import Convolution2D, MaxPooling2D
 from keras import callbacks
 import time
+import h5py
+
+#h5.get_config().default_file_mode='w'
 
 def train():
+    print("training")
     start = time.time()
 
     DEV = False
@@ -23,7 +27,7 @@ def train():
     else:
       epochs = 100
 
-    train_data_path = 'Data/Train/'
+    train_data_path = 'Data/Training/'
     validation_data_path = 'Data/Test/'
 
     """
@@ -44,11 +48,11 @@ def train():
     model = Sequential()
     model.add(Convolution2D(nb_filters1, conv1_size, conv1_size, border_mode ="same", input_shape=(img_width, img_height, 3)))
     model.add(Activation("relu"))
-    model.add(MaxPooling2D(pool_size=(pool_size, pool_size)))
+    model.add(MaxPooling2D(pool_size=(pool_size, pool_size),data_format='channels_last'))
 
     model.add(Convolution2D(nb_filters2, conv2_size, conv2_size, border_mode ="same"))
     model.add(Activation("relu"))
-    model.add(MaxPooling2D(pool_size=(pool_size, pool_size), dim_ordering='th'))
+    model.add(MaxPooling2D(pool_size=(pool_size, pool_size), data_format='channels_last'))
 
     model.add(Flatten())
     model.add(Dense(256))
@@ -98,6 +102,8 @@ def train():
     target_dir = './models/'
     if not os.path.exists(target_dir):
       os.mkdir(target_dir)
+    #/home/leipzig/StreamlitDemos/Classification/streamlit/lib/python3.7/site-packages/keras/utils/io_utils.py:186: H5pyDeprecationWarning: The default file mode will change to 'r' (read-only) in h5py 3.0. To suppress this warning, pass the mode you need to h5py.File(), or set the global default h5.get_config().default_file_mode, or set the environment variable H5PY_DEFAULT_READONLY=1. Available modes are: 'r', 'r+', 'w', 'w-'/'x', 'a'. See the docs for details.
+    h5py.File("./models/model.h5", "w")
     model.save('./models/model.h5')
     model.save_weights('./models/weights.h5')
 
@@ -114,5 +120,5 @@ def train():
         dur=dur/(60*60)
         print("Execution Time:",dur,"hours")
 
-if __name__ == "__train__":
+if __name__ == "__main__":
     train()

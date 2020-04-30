@@ -6,15 +6,17 @@ from os.path import isfile, join
 from PIL import Image
 import Training
 import Testing
-from keras.models import load_model
+#https://github.com/keras-team/keras/issues/13353
+#from keras.models import load_model
+from tensorflow.keras.models import load_model
 from keras import backend as K
 
 showpred = 0
-try:
-	model_path = './models/model.h5'
-	model_weights_path = './models/weights.h5'
-except: 
-	print("Need to train model")
+#try:
+model_path = './models/model.h5'
+model_weights_path = './models/weights.h5'
+#except: 
+#	print("Need to train model")
 test_path = 'Data/Test'
 
 #Load the pre-trained models
